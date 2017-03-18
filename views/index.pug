@@ -1,0 +1,10 @@
+html
+  head
+    title= title
+  body
+    form
+      input(name='title')
+      input(type='Submit' value='Add Todo')
+    ul
+      each todo in todos
+        li= todo['title'] + ': ' + todo['complete']
