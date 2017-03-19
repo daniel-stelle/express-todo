@@ -4,6 +4,7 @@
   "description": "A todo list application using express",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "express-debug": "^1.1.1",
     "pug": "^2.0.0-beta11"
@@ -13,5 +14,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Daniel Stelle",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daniel-stelle/express-todo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daniel-stelle/express-todo/issues"
+  },
+  "homepage": "https://github.com/daniel-stelle/express-todo#readme"
 }
