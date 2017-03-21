@@ -20,7 +20,7 @@ router.route('/')
     let newBlock = request.body;
     db.none('insert into todos(title, complete) values($1, $2)', [newBlock.title, false]);
 
-    response.status(201).json(newBlock.title);
+    response.status(201).json(newBlock);
   });
 
 module.exports = router;

@@ -10,6 +10,10 @@ $(function() {
       console.log(data);
       const todoItem = $('<li></li>')
         .text(data.title + ': false')
+        .prepend(
+          $('<input type="checkbox" />')
+            .data('todo-id', data.todo_id)
+        )
 
       $('.todo-items').append(todoItem);
       form.trigger('reset');

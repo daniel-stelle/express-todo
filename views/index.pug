@@ -7,6 +7,8 @@ html
       input(type='Submit' value='Add Todo')
     ul.todo-items
       each todo in todos
-        li= todo['title'] + ': ' + todo['complete']
+        li
+          input(type='checkbox' data-todo-id=todo['todo_id'] checked=(todo['complete'] ? 'checked' : undefined))
+          = todo['title'] + ': ' + todo['complete']
     script(src='jquery-3.2.0.js')
     script(src='client.js')
