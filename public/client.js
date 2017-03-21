@@ -19,4 +19,15 @@ $(function() {
       form.trigger('reset');
     });
   });
+
+  $('input:checkbox').change(function(event) {
+    event.preventDefault();
+    const todoId = $(this).data('todo-id');
+
+    $.ajax({
+      type: 'PATCH', url: '/todos/' + todoId
+    }).done(function() {
+      location.reload();
+    })
+  })
 });

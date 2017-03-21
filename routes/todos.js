@@ -23,4 +23,13 @@ router.route('/')
     response.status(201).json(newBlock);
   });
 
+router.route('/:id')
+  .patch(parseUrlencoded, function(request, response) {
+    const todoId = request.params.id;
+    db.none('UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
+    console.log('Toggle todo with id #' + todoId + ': UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
+
+    response.status(200)
+  })
+
 module.exports = router;
