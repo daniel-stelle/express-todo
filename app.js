@@ -1,10 +1,10 @@
-let express = require('express');
-let app = express();
+const express = require('express');
+const app = express();
 
 app.use(express.static('public'));
 app.set('view engine', 'pug');
 
-let todos = require('./routes/todos');
+const todos = require('./routes/todos');
 app.use('/todos', todos);
 
 app.listen(3000, function() {

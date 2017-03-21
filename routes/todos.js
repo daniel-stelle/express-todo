@@ -6,8 +6,8 @@ let db = pgp({
   port: 5432,
   database: 'express_todos'
 });
-let bodyParser = require('body-parser');
-let parseUrlencoded = bodyParser.urlencoded({ extended: false });
+const bodyParser = require('body-parser');
+const parseUrlencoded = bodyParser.urlencoded({ extended: false });
 
 router.route('/')
   .get(function(request, response) {
