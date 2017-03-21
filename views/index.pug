@@ -5,7 +5,7 @@ html
     form
       input(name='title')
       input(type='Submit' value='Add Todo')
-    ul
+    ul.todo-items
       each todo in todos
         li= todo['title'] + ': ' + todo['complete']
     script(src='jquery-3.2.0.js')
