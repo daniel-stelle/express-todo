@@ -1,15 +1,11 @@
 $(function() {
-  $.get('/todos');
-
   $('form').on('submit', function(event) {
     event.preventDefault();
-    let form = $(this);
-    let blockData = $(this).serialize();
-    console.log('Blockdata: ', blockData);
+    const form = $(this);
+    const todoData = $(this).serialize();
 
     $.ajax({
-      type: 'POST', url: '/todos', data: blockData
-    }).done(function(todoItem) {
+      type: 'POST', url: '/todos', data: todoData
       form.trigger('reset');
       location.reload();
     });
