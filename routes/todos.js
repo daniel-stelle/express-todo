@@ -11,14 +11,18 @@ const parseUrlencoded = bodyParser.urlencoded({ extended: false });
 
 router.route('/')
   .get(function(request, response) {
-    db.any('select * from todos')
+    db.any('SELECT * FROM todos ORDER BY todo_id')
       .then(data => {
-        response.render('index', { title: 'Hey', todos: data })
+        response.render('index', { title: 'Express Todos', todos: data })
       });
+
+    console.log('Get todos: SELECT * FROM todos');
   })
   .post(parseUrlencoded, function(request, response) {
-    let newBlock = request.body;
-    db.none('insert into todos(title, complete) values($1, $2)', [newBlock.title, false]);
+    const newBlock = request.body;
+    db.none('INSERT INTO todos(title, complete) VALUES($1, $2)', [newBlock.title, false]);
+
+    console.log('Add todo: INSERT INTO todos(title, complete) VALUES($1, $2)');
 
     response.status(201).json(newBlock);
   });
