@@ -38,10 +38,10 @@ router.route('/:id')
   .delete(function(request, response) {
     const todoId = request.params.id;
 
-    db.one('DELETE FROM todos WHERE todo_id = ' + todoId);
+    db.none('DELETE FROM todos WHERE todo_id = ' + todoId);
     console.log('Delete todo with id #' + todoId + ': DELETE FROM todos WHERE todo_id = ' + todoId);
 
-    response.status(200).end();
+    response.sendStatus(200);
   })
 
 module.exports = router;
