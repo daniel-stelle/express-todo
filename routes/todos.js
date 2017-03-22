@@ -15,13 +15,12 @@ router.route('/')
       .then(data => {
         response.render('index', { title: 'Express Todos', todos: data })
       });
-
     console.log('Get todos: SELECT * FROM todos');
   })
   .post(parseUrlencoded, function(request, response) {
     const newBlock = request.body;
-    db.none('INSERT INTO todos(title, complete) VALUES($1, $2)', [newBlock.title, false]);
 
+    db.none('INSERT INTO todos(title, complete) VALUES($1, $2)', [newBlock.title, false]);
     console.log('Add todo: INSERT INTO todos(title, complete) VALUES($1, $2)');
 
     response.status(201).json(newBlock);
@@ -30,10 +29,19 @@ router.route('/')
 router.route('/:id')
   .patch(parseUrlencoded, function(request, response) {
     const todoId = request.params.id;
+
     db.none('UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
     console.log('Toggle todo with id #' + todoId + ': UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
 
-    response.status(200)
+    response.status(200);
+  })
+  .delete(function(request, response) {
+    const todoId = request.params.id;
+
+    db.one('DELETE FROM todos WHERE todo_id = ' + todoId);
+    console.log('Delete todo with id #' + todoId + ': DELETE FROM todos WHERE todo_id = ' + todoId);
+
+    response.status(200).end();
   })
 
 module.exports = router;

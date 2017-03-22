@@ -20,6 +20,20 @@ $(function() {
     });
   });
 
+  $('.todo-items').on('click', 'a[data-todo-id]', function(event) {
+    if (!confirm('Are you sure?')) {
+      return false;
+    }
+
+    const target = $(event.currentTarget);
+
+    $.ajax({
+      type: 'DELETE', url: '/todos/' + target.data('todo-id')
+    }).done(function() {
+      target.parent('li').remove();
+    })
+  })
+
   $('input:checkbox').change(function(event) {
     event.preventDefault();
     const todoId = $(this).data('todo-id');
