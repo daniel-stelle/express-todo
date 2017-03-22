@@ -33,7 +33,7 @@ router.route('/:id')
     db.none('UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
     console.log('Toggle todo with id #' + todoId + ': UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
 
-    response.status(200);
+    response.sendStatus(200);
   })
   .delete(function(request, response) {
     const todoId = request.params.id;

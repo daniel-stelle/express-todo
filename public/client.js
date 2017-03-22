@@ -31,8 +31,8 @@ $(function() {
       type: 'DELETE', url: '/todos/' + target.data('todo-id')
     }).done(function() {
       target.parent('li').remove();
-    })
-  })
+    });
+  });
 
   $('input:checkbox').change(function(event) {
     event.preventDefault();
@@ -41,7 +41,7 @@ $(function() {
     $.ajax({
       type: 'PATCH', url: '/todos/' + todoId
     }).done(function() {
-      location.reload();
-    })
-  })
+      $('#todo_' + todoId).toggleClass('item-complete');
+    });
+  });
 });

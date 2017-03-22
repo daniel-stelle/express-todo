@@ -1,15 +1,26 @@
 html
   head
     title= title
+    link(rel='stylesheet' type='text/css' href='css/todos/style.scss')
   body
-    form
-      input(name='title')
-      input(type='Submit' value='Add Todo')
-    ul.todo-items
-      each todo in todos
-        li
-          input(type='checkbox' data-todo-id=todo['todo_id'] checked=(todo['complete'] ? 'checked' : undefined))
-          = todo['title'] + ': ' + todo['complete']
-          a(href='#' data-todo-id=todo['todo_id']) &nbsp;delete
-    script(src='jquery-3.2.0.js')
-    script(src='client.js')
+    .todos
+      h1.heading Welcome to Express Todos!
+      form.add-todo
+        input(name='title')
+        input(type='Submit' value='Add Todo')
+      ul.todo-items
+        each todo in todos
+          li.item
+            input(
+              type='checkbox'
+              data-todo-id=todo['todo_id']
+              checked=(todo['complete'] ? 'checked' : undefined)
+            )
+            span(
+              class=(todo['complete'] ? 'item-complete' : '')
+              id='todo_' + todo['todo_id']
+            )
+              = todo['title'] + ': ' + todo['complete']
+            a(href='#' data-todo-id=todo['todo_id']) delete
+      script(src='jquery-3.2.0.js')
+      script(src='client.js')
