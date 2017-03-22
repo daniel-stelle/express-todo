@@ -31,16 +31,16 @@ router.route('/:id')
   .patch(parseUrlencoded, function(request, response) {
     const todoId = request.params.id;
 
-    db.none('UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
-    console.log('Toggle todo with id #' + todoId + ': UPDATE todos SET complete = NOT complete WHERE todo_id = ' + todoId);
+    db.none('UPDATE todos SET complete = NOT complete WHERE todo_id = $1', todoId);
+    console.log('Toggle todo with id #$1: UPDATE todos SET complete = NOT complete WHERE todo_id = $1', todoId);
 
     response.sendStatus(200);
   })
   .delete(function(request, response) {
     const todoId = request.params.id;
 
-    db.none('DELETE FROM todos WHERE todo_id = ' + todoId);
-    console.log('Delete todo with id #' + todoId + ': DELETE FROM todos WHERE todo_id = ' + todoId);
+    db.none('DELETE FROM todos WHERE todo_id = $1', todoId);
+    console.log('Delete todo with id #$1: DELETE FROM todos WHERE todo_id = $1', todoId);
 
     response.sendStatus(200);
   })
