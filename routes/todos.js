@@ -20,10 +20,11 @@ router.route('/')
   .post(parseUrlencoded, function(request, response) {
     const newBlock = request.body;
 
-    db.none('INSERT INTO todos(title, complete) VALUES($1, $2)', [newBlock.title, false]);
-    console.log('Add todo: INSERT INTO todos(title, complete) VALUES($1, $2)');
-
-    response.status(201).json(newBlock);
+    db.one('INSERT INTO todos(title, complete) VALUES($1, $2) RETURNING *', [newBlock.title, false])
+      .then(data => {
+        console.log('Add todo: INSERT INTO todos(title, complete) VALUES($1, $2)');
+        response.status(201).json(data);
+      });
   });
 
 router.route('/:id')

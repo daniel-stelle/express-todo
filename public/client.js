@@ -7,13 +7,15 @@ $(function() {
     $.ajax({
       type: 'POST', url: '/todos', data: todoData
     }).done(function(data) {
-      console.log(data);
+      const title = data.title;
+      const id = data.todo_id;
       const todoItem = $('<li></li>')
-        .text(data.title + ': false')
         .prepend(
           $('<input type="checkbox" />')
-            .data('todo-id', data.todo_id)
+            .data('todo-id', id)
         )
+        .append('<span id=todo_' + id + '>' + title + ': false</span>')
+        .append('<a href="#" data-todo-id=' + id + '>delete</a>')
 
       $('.todo-items').append(todoItem);
       form.trigger('reset');
